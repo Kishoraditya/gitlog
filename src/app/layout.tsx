@@ -47,6 +47,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { GrowthBookProvider } from "@/components/providers/GrowthBookProvider";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -56,16 +58,18 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark min-h-screen flex flex-col`}>
         <SessionProvider>
-          <Analytics>
-            <Header />
-            <main className="flex-1">
-              {children}
-            </main>
-            <Footer />
-            <FloatingTipJar />
-            <FeedbackSidebar />
-            <Toaster position="bottom-right" richColors theme="dark" />
-          </Analytics>
+          <GrowthBookProvider>
+            <Analytics>
+              <Header />
+              <main className="flex-1">
+                {children}
+              </main>
+              <Footer />
+              <FloatingTipJar />
+              <FeedbackSidebar />
+              <Toaster position="bottom-right" richColors theme="dark" />
+            </Analytics>
+          </GrowthBookProvider>
         </SessionProvider>
       </body>
     </html>

@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import Script from "next/script";
+import { useSession } from "next-auth/react";
 
 // Initialize PostHog
 if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
@@ -16,13 +17,44 @@ if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
 }
 
 export function Analytics({ children }: { children: React.ReactNode }) {
+    const { data: session } = useSession();
+
     useEffect(() => {
         // Check cookie consent before tracking
         const consent = localStorage.getItem("cookie-consent");
-        if (consent === "all" && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
-            posthog.capture("$pageview");
+        if (consent === "all") {
+            if (process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+                posthog.capture("$pageview");
+            }
+
+            // Identify user across platforms if session exists
+            if (session?.user) {
+                const userId = session.user.id;
+
+                // PostHog
+                posthog.identify(userId, {
+                    email: session.user.email,
+                    name: session.user.name,
+                });
+
+                // Google Analytics
+                if ((window as any).gtag) {
+                    (window as any).gtag("config", process.env.NEXT_PUBLIC_GA_ID, {
+                        user_id: userId,
+                    });
+                }
+
+                // Sentry
+                import("@sentry/nextjs").then(Sentry => {
+                    Sentry.setUser({
+                        id: userId,
+                        email: session.user.email || undefined,
+                        username: session.user.name || undefined,
+                    });
+                });
+            }
         }
-    }, []);
+    }, [session]);
 
     return (
         <PostHogProvider client={posthog}>

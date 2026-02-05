@@ -13,6 +13,17 @@ We use a hybrid approach of direct database management (PostgreSQL) and dynamic 
   - `ai_generation`: Toggle the core LLM processing.
   - `beta_access`: Restricts dashboard to specific email allowlists.
 
+## 🛡️ Unified Command Center (/admin)
+The admin console is the heart of GitLog AI operations. It surfaces:
+- **Live Business KPIs**: Real-time counts of Users, Repos, and Changelogs.
+- **System Health**: Active monitoring of system status and execution metrics.
+- **One-Click Toolbox**: Direct deep-links to Sentry, GrowthBook, PostHog, and Razorpay.
+
+## 🛠️ Monitoring & Alerting (Sentry)
+- **Error Tracking**: All client and server errors are sent to [Sentry](https://sentry.io).
+- **Alerting**: Critical exceptions trigger notifications based on the rules defined in the Sentry dashboard.
+- **Performance**: Monitor API latency and LLM response times globally.
+
 ### Detailed Metrics (PostHog)
 - **Dashboard**: Monitor growth via [PostHog Dashboard](https://app.posthog.com).
 - **KPIs to Watch**:
@@ -37,9 +48,13 @@ We use a hybrid approach of direct database management (PostgreSQL) and dynamic 
 ### 4. RSS Feed Strategy
 - **Distribution**: Two feeds exist at `/api/rss/blog` and `/api/rss/changelog`. These should be submitted to technical aggregators (Daily.dev, HN, etc.) as the project evolves.
 
+## 📬 Mailing & Growth
+- **Mailing Center**: View and export newsletter subscribers directly in the `/admin` dashboard.
+- **Strategy**: Use exported lists for product updates or feature announcements.
+
 ## ☕ Support Handling
 - **Razorpay**: Tips are monitored via the Razorpay Dashboard.
-- **Sync**: The `/api/tips/stats` route fetches live data every time the landing page is loaded (cached for 60s).
+- **Community Progress**: The landing page tip jar automatically sums captured payments from the Razorpay API.
 
 ---
 GitLog AI - Confidential Internal Documentation
