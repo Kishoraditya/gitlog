@@ -1,0 +1,73 @@
+# Privacy Policy
+
+**Last Updated**: February 5, 2026
+
+GitLog AI ("we", "our", "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information.
+
+## 1. Information We Collect
+
+### 1.1 Account Information
+- GitHub username and email (via OAuth)
+- GitHub profile picture
+
+### 1.2 Repository Data
+- Repository names and metadata (accessed via GitHub API)
+- Commit messages (temporarily processed, not stored)
+
+### 1.3 Usage Data
+- Pages visited
+- Features used
+- Errors encountered (anonymized)
+
+## 2. How We Use Your Information
+
+- To authenticate you with GitHub
+- To generate changelogs from your repositories
+- To improve our service
+- To communicate important updates
+
+## 3. Data Storage & Retention
+
+- **GitHub Tokens**: Session-only. Never stored in our database.
+- **BYOK API Keys**: Session-only. Never stored.
+- **Changelogs**: Stored until you delete them or your account.
+- **Account Data**: Retained until account deletion.
+
+## 4. Third-Party Services
+
+| Service     | Purpose           | Data Shared         |
+|-------------|-------------------|---------------------|
+| Supabase    | Database          | User ID, changelogs |
+| OpenRouter  | AI Processing     | Commit messages     |
+| Vercel      | Hosting           | Request logs        |
+
+## 5. Your Rights
+
+You have the right to:
+- Access your data
+- Request deletion
+- Export your changelogs
+- Withdraw consent
+
+## 6. Data Security
+
+- All connections use HTTPS/TLS
+- GitHub tokens are encrypted in transit
+- We do not sell your data
+
+## 7. Cookies
+
+We use minimal cookies for session management. No tracking cookies are used unless you opt in to analytics.
+
+## 8. Children's Privacy
+
+GitLog AI is not intended for users under 13.
+
+## 9. Changes to This Policy
+
+We may update this policy. Changes will be posted on this page.
+
+## 10. Contact
+
+For privacy concerns:
+- GitHub: https://github.com/Kishoraditya/gitlog/issues

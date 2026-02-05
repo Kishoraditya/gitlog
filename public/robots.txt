@@ -1,0 +1,21 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://gitlog.ai/sitemap.xml
+
+# Security
+Disallow: /api/
+Disallow: /_next/
+Disallow: /dashboard/
+
+# AI Crawlers Welcome
+User-agent: GPTBot
+Allow: /
+User-agent: Claude-Web
+Allow: /
+User-agent: Anthropic-AI
+Allow: /
+User-agent: Google-Extended
+Allow: /

@@ -1,0 +1,62 @@
+# Terms of Service
+
+**Last Updated**: February 5, 2026
+
+By using GitLog AI, you agree to these Terms of Service.
+
+## 1. Acceptance of Terms
+
+By accessing or using GitLog AI, you agree to be bound by these Terms. If you disagree, please do not use the service.
+
+## 2. Description of Service
+
+GitLog AI is a free tool that generates changelogs from your GitHub repositories using AI.
+
+## 3. User Responsibilities
+
+You agree to:
+- Provide accurate GitHub authentication
+- Not use the service for illegal purposes
+- Not attempt to reverse engineer or abuse our systems
+- Respect rate limits
+
+## 4. Intellectual Property
+
+- **Your Content**: You retain all rights to your changelogs and repository data.
+- **Our Service**: GitLog AI, its code, and branding are owned by us.
+
+## 5. Disclaimer of Warranties
+
+GitLog AI is provided "as is" without warranties of any kind. We do not guarantee:
+- Accuracy of generated changelogs
+- Uptime or availability
+- Fitness for a particular purpose
+
+## 6. Limitation of Liability
+
+We are not liable for any indirect, incidental, or consequential damages arising from your use of GitLog AI.
+
+## 7. Data Usage
+
+See our Privacy Policy for details on how we handle your data.
+
+## 8. Third-Party Services
+
+Our service integrates with GitHub and AI providers. Your use of those services is subject to their respective terms.
+
+## 9. Termination
+
+We may suspend or terminate your access at any time for violations of these Terms.
+
+## 10. Changes to Terms
+
+We may update these Terms. Continued use after changes constitutes acceptance.
+
+## 11. Governing Law
+
+These Terms are governed by the laws of India.
+
+## 12. Contact
+
+For questions about these Terms:
+- GitHub: https://github.com/Kishoraditya/gitlog/issues

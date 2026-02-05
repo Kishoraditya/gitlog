@@ -1,0 +1,29 @@
+{
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "GitLog AI",
+    "description": "AI-powered changelog generation from Git commits. Supports Keep a Changelog, GitHub Releases, and smart semantic versioning.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Web",
+    "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+    },
+    "author": {
+        "@type": "Person",
+        "name": "Kishoraditya",
+        "url": "https://github.com/Kishoraditya"
+    },
+    "url": "https://gitlog.ai",
+    "screenshot": "https://gitlog.ai/og-image.png",
+    "featureList": [
+        "AI-powered changelog generation",
+        "Keep a Changelog format",
+        "GitHub Release notes",
+        "Semantic version suggestions",
+        "Push to GitHub",
+        "BYOK (Bring Your Own Key)",
+        "Deep commit inspection"
+    ]
+}

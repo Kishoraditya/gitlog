@@ -1,0 +1,45 @@
+# GitLog AI
+
+> AI-powered changelog generation from Git commits
+
+## What is GitLog AI?
+
+GitLog AI transforms messy Git commit history into polished, professional changelogs. It uses AI to understand your commits, detect breaking changes, suggest semantic versions, and format output to industry standards like Keep a Changelog.
+
+## Who is it for?
+
+- Open Source Maintainers
+- DevOps Engineers
+- Product Managers
+- Solo Developers
+- Teams shipping frequently
+
+## Key Features
+
+- **Smart Versioning**: Auto-detects major/minor/patch from commits
+- **Keep a Changelog Format**: Industry-standard output
+- **Deep Inspection**: Analyzes code diffs for vague commits
+- **Contributor Shoutouts**: Credits authors automatically
+- **BYOK**: Bring your own API key (OpenRouter, OpenAI, Claude)
+- **Push to GitHub**: Updates CHANGELOG.md directly
+
+## How to Access
+
+1. **Web App**: https://gitlog.ai
+2. **API**: POST to /api/v1/generate (coming soon)
+3. **MCP Server**: See /agents.md for integration
+
+## Pricing
+
+Free. Community-supported via tips.
+
+## Contact
+
+- Website: https://gitlog.ai
+- GitHub: https://github.com/Kishoraditya/gitlog
+
+## Data Handling
+
+- No user data is used for AI training
+- GitHub tokens are session-only (not stored)
+- BYOK keys are never persisted
