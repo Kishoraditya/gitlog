@@ -103,7 +103,7 @@ setInterval(() => {
     }
 }, 60 * 1000); // Every minute
 
-export function middleware(req: NextRequest) {
+export function proxy(req: NextRequest) {
     const pathname = req.nextUrl.pathname;
 
     // Only rate limit API routes
