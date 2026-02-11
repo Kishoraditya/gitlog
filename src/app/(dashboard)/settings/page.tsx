@@ -18,7 +18,7 @@ import {
     Globe,
     FileText
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { toast } from "sonner";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -34,6 +34,17 @@ import { Switch } from "@/components/ui/switch";
 export default function SettingsPage() {
     const { data: session } = useSession();
     const [deleting, setDeleting] = useState(false);
+    const [template, setTemplate] = useState("");
+
+    useEffect(() => {
+        fetch("/api/user/settings")
+            .then(res => res.json())
+            .then(data => {
+                if (data.user?.customFormat) {
+                    setTemplate(data.user.customFormat);
+                }
+            });
+    }, []);
 
     const handleExportData = () => {
         toast.success("Data export started. Check your email.");
@@ -163,9 +174,47 @@ export default function SettingsPage() {
                                             <SelectItem value="keepachangelog">Keep a Changelog</SelectItem>
                                             <SelectItem value="github_release">GitHub Release</SelectItem>
                                             <SelectItem value="simple">Simple Minimalist</SelectItem>
+                                            <SelectItem value="custom">Custom Template</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
+                            </div>
+
+                            <Separator className="bg-white/5" />
+
+                            <div className="space-y-4">
+                                <div className="space-y-2">
+                                    <Label className="flex items-center gap-2">
+                                        <FileText className="h-4 w-4 text-green-400" />
+                                        Custom Changelog Template
+                                    </Label>
+                                    <p className="text-xs text-gray-500 mb-2">
+                                        Available variables: <code className="text-green-400">{"{{version}}"}</code>, <code className="text-green-400">{"{{date}}"}</code>, <code className="text-green-400">{"{{comment}}"}</code>, <code className="text-green-400">{"{{commits}}"}</code>
+                                    </p>
+                                    <textarea
+                                        placeholder="# Release {{version}} ({{date}})\n\n{{comment}}\n\n{{commits}}"
+                                        className="w-full min-h-[150px] bg-white/5 border border-white/10 rounded-md p-3 text-sm text-gray-200 focus:outline-none focus:ring-1 focus:ring-green-500"
+                                        id="custom-format-setting"
+                                    />
+                                </div>
+                                <Button
+                                    className="bg-green-600 hover:bg-green-700"
+                                    onClick={async () => {
+                                        const template = (document.getElementById('custom-format-setting') as HTMLTextAreaElement).value;
+                                        try {
+                                            const res = await fetch('/api/user/settings', {
+                                                method: 'PATCH',
+                                                body: JSON.stringify({ customFormat: template }),
+                                            });
+                                            if (res.ok) toast.success("Template saved!");
+                                            else toast.error("Failed to save template");
+                                        } catch (e) {
+                                            toast.error("Error saving settings");
+                                        }
+                                    }}
+                                >
+                                    Save Preferences
+                                </Button>
                             </div>
 
                             <Separator className="bg-white/5" />

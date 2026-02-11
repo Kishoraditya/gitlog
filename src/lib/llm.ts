@@ -28,7 +28,7 @@ function getInternalLLM() {
 const MODEL_FAST = "tngtech/deepseek-r1t2-chimera:free";
 const MODEL_SMART = "arcee-ai/trinity-large-preview:free";
 
-export type ChangelogFormat = "keepachangelog" | "github_release" | "simple";
+export type ChangelogFormat = "keepachangelog" | "github_release" | "simple" | "custom";
 
 interface ParsedCommit {
     type: string | null;
@@ -44,6 +44,8 @@ export interface GenerateOptions {
     format: ChangelogFormat;
     repoName: string;
     version?: string;
+    comment?: string;
+    customFormatTemplate?: string;
     includeAuthors?: boolean;
     accessToken?: string;
     customApiKey?: string;
@@ -143,6 +145,7 @@ migration_required: (true|false)
 Include a summary, ✨ Highlights (grouped by type), and Emojis.
 Use commit links if available for each bullet point.`,
     simple: `Generate a simple bullet-point changelog with commit links if available.`,
+    custom: `Generate a changelog based on the provided custom template.`,
 };
 
 async function assessCommitQuality(commits: GitHubCommit[]): Promise<Record<string, "clear" | "vague">> {
@@ -221,18 +224,35 @@ async function analyzeDiffs(
 }
 
 export async function generateChangelog(options: GenerateOptions): Promise<string> {
-    const { commits, format, repoName, version, accessToken, outputLanguage } = options;
+    const { commits, format, repoName, version, comment, customFormatTemplate, accessToken, outputLanguage } = options;
 
     // Check cache first
     const cacheHash = simpleHash(JSON.stringify({
         shas: commits.map(c => c.sha),
         format,
         version,
+        comment,
+        customFormatTemplate,
         outputLanguage
     }));
 
     const cached = getCachedChangelog(cacheHash);
     if (cached) return cached;
+
+    // Handle Custom Format (Manual Mode)
+    if (format === "custom" && customFormatTemplate) {
+        let result = customFormatTemplate;
+        const date = new Date().toISOString().split("T")[0];
+        const commitList = commits.map(c => `- ${c.commit.message.split("\n")[0]} ([commit](${c.html_url}))`).join("\n");
+
+        result = result.replace(/\{\{version\}\}/g, version || "Unreleased");
+        result = result.replace(/\{\{date\}\}/g, date);
+        result = result.replace(/\{\{comment\}\}/g, comment || "");
+        result = result.replace(/\{\{commits\}\}/g, commitList);
+        result = result.replace(/\{\{repo\}\}/g, repoName);
+
+        return result;
+    }
 
     const parsed = parseConventionalCommits(commits);
     const candidatesForInspection = commits.filter((c, i) => parsed[i].type === null);

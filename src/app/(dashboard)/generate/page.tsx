@@ -48,11 +48,12 @@ interface GenerateState {
     repoFullName: string;
     fromRef: string;
     toRef: string;
-    format: "keepachangelog" | "github_release" | "simple";
+    format: "keepachangelog" | "github_release" | "simple" | "custom";
     generateVersion: boolean;
     pushToRepo: boolean;
     currentVersion: string;
     title: string;
+    comment: string;
     customApiKey?: string;
     customBaseURL?: string;
     outputLanguage?: string;
@@ -83,6 +84,7 @@ function GenerateContent() {
         pushToRepo: false,
         currentVersion: "",
         title: "",
+        comment: "",
     });
 
     // Fetch repos on load
@@ -323,12 +325,26 @@ function GenerateContent() {
                                 onValueChange={(val) => setParams((p) => ({ ...p, format: val as any }))}
                                 className="w-full"
                             >
-                                <TabsList className="grid w-full grid-cols-3 bg-gray-950">
+                                <TabsList className="grid w-full grid-cols-4 bg-gray-950">
                                     <TabsTrigger value="keepachangelog">Standard</TabsTrigger>
                                     <TabsTrigger value="github_release">GitHub</TabsTrigger>
                                     <TabsTrigger value="simple">Simple</TabsTrigger>
+                                    <TabsTrigger value="custom">Custom</TabsTrigger>
                                 </TabsList>
                             </Tabs>
+                        </div>
+
+                        <div className="space-y-2">
+                            <Label>Comment / Highlights (Optional)</Label>
+                            <textarea
+                                placeholder="Add specific notes or manual highlights..."
+                                value={params.comment}
+                                onChange={(e) => setParams(p => ({ ...p, comment: e.target.value }))}
+                                className="w-full min-h-[100px] bg-gray-950 border border-gray-800 rounded-md p-3 text-sm text-gray-200 focus:outline-none focus:ring-1 focus:ring-green-500"
+                            />
+                            <p className="text-[10px] text-gray-500">
+                                This will be included in your changelog. Great for manual additions.
+                            </p>
                         </div>
 
                         <div className="space-y-2">

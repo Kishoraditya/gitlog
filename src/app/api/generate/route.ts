@@ -74,6 +74,7 @@ export async function POST(req: NextRequest) {
             customApiKey,
             customBaseURL,
             outputLanguage,
+            comment,
         } = validation.data;
 
         if (!repositoryId) {
@@ -84,6 +85,11 @@ export async function POST(req: NextRequest) {
         }
 
         const { owner, repo } = parseRepoFullName(repoFullName);
+
+        // Fetch repository to check for overrides
+        const repository = await prisma.repository.findUnique({
+            where: { id: repositoryId }
+        });
 
         // Fetch commits
         let commits;
@@ -124,12 +130,17 @@ export async function POST(req: NextRequest) {
             versionReason = versionResult.reason;
         }
 
+        // Determine custom template
+        const customFormatTemplate = repository?.customFormat || user.customFormat || undefined;
+
         // Generate changelog
         const content = await generateChangelog({
             commits,
             format: format as ChangelogFormat,
             repoName: repoFullName,
             version,
+            comment,
+            customFormatTemplate,
             accessToken: session.accessToken,
             customApiKey,
             customBaseURL,

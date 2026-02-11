@@ -70,6 +70,8 @@ model User {
   subscription  Subscription?
   feedbacks     Feedback[]
   
+  customFormat  String?   @db.Text
+  
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 }
@@ -82,6 +84,7 @@ model Repository {
   private       Boolean   @default(false)
   defaultBranch String    @default("main")
   description   String?
+  customFormat  String?   @db.Text
   
   userId        String
   user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)

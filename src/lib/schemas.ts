@@ -16,10 +16,11 @@ export const GenerateRequestSchema = z.object({
     toRef: z.string().default("HEAD"),
     since: z.string().datetime().optional(),
     until: z.string().datetime().optional(),
-    format: z.enum(["keepachangelog", "github_release", "simple"]).default("keepachangelog"),
+    format: z.enum(["keepachangelog", "github_release", "simple", "custom"]).default("keepachangelog"),
     generateVersion: z.boolean().default(false),
     currentVersion: z.string().optional(),
     title: z.string().max(200).optional(),
+    comment: z.string().max(2000).optional(),
     pushToRepo: z.boolean().default(false),
     customApiKey: z.string().optional(),
     customBaseURL: z.string().url().optional(),
@@ -78,8 +79,9 @@ export type GitHubReleaseWebhook = z.infer<typeof GitHubReleaseWebhookSchema>;
 
 // User settings schema
 export const UserSettingsSchema = z.object({
-    defaultFormat: z.enum(["keepachangelog", "github_release", "simple"]).optional(),
+    defaultFormat: z.enum(["keepachangelog", "github_release", "simple", "custom"]).optional(),
     defaultLanguage: z.string().length(2).optional(),
+    customFormat: z.string().optional(),
     emailNotifications: z.boolean().optional(),
     pushToGitHub: z.boolean().optional(),
 });

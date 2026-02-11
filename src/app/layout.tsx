@@ -8,6 +8,7 @@ import { SessionProvider } from "@/components/providers/SessionProvider";
 import { FloatingTipJar } from "@/components/FloatingTipJar";
 import { FeedbackSidebar } from "@/components/FeedbackSidebar";
 import { Toaster } from "sonner";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,9 +58,35 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark min-h-screen flex flex-col`}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "GitLog AI",
+              "applicationCategory": "DeveloperApplication",
+              "operatingSystem": "Web",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "description": "Transform your messy Git commits into polished, professional changelogs using AI.",
+              "featureList": "AI Changelog Generation, Model Context Protocol (MCP) Server, Multi-language Support",
+              "softwareHelp": "https://gitlog.ai/docs",
+              "author": {
+                "@type": "Person",
+                "name": "Kishoraditya",
+                "url": "https://github.com/Kishoraditya"
+              }
+            })
+          }}
+        />
         <SessionProvider>
           <GrowthBookProvider>
             <Analytics>
+              <div className="bg-noise" />
               <Header />
               <main className="flex-1">
                 {children}
@@ -68,6 +95,7 @@ export default function RootLayout({
               <FloatingTipJar />
               <FeedbackSidebar />
               <Toaster position="bottom-right" richColors theme="dark" />
+              <SpeedInsights />
             </Analytics>
           </GrowthBookProvider>
         </SessionProvider>

@@ -5,6 +5,7 @@ import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import Script from "next/script";
 import { useSession } from "next-auth/react";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
 
 // Initialize PostHog
 if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
@@ -77,6 +78,7 @@ export function Analytics({ children }: { children: React.ReactNode }) {
                     </Script>
                 </>
             )}
+            <VercelAnalytics />
             {children}
         </PostHogProvider>
     );
