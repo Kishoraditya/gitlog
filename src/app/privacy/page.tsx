@@ -45,7 +45,7 @@ export default function PrivacyPage() {
                 <h2>5. Contact</h2>
                 <p>
                     For privacy concerns, please open an issue on{" "}
-                    <Link href="https://github.com/Kishoraditya/gitlog/issues" className="text-green-400">
+                    <Link href="https://github.com/gitlog/issues" className="text-green-400">
                         GitHub
                     </Link>.
                 </p>

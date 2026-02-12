@@ -50,7 +50,7 @@ export default function TermsPage() {
                 <h2>7. Contact</h2>
                 <p>
                     For questions, please open an issue on{" "}
-                    <Link href="https://github.com/Kishoraditya/gitlog/issues" className="text-green-400">
+                    <Link href="https://github.com/gitlog/issues" className="text-green-400">
                         GitHub
                     </Link>.
                 </p>

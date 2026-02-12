@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { GitBranch, Github, Twitter, Mail, Globe, Sparkles, Send, Loader2 } from "lucide-react";
+import { GitBranch, Github, Linkedin, Mail, Globe, Sparkles, Send, Loader2 } from "lucide-react";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -63,20 +63,26 @@ export function Footer() {
 
                 {/* Bottom Layer: Legal & Social */}
                 <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-10 border-t border-white/5">
-                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
-                        <p className="text-[10px] text-gray-600 font-medium">
-                            © 2026 GitLog AI. Built with precision for the open-source community.
-                        </p>
-                        <div className="flex items-center gap-6">
-                            <Link href="https://github.com/Kishoraditya/gitlog" target="_blank" className="text-gray-600 hover:text-white transition-colors">
-                                <Github className="h-4 w-4" />
-                            </Link>
-                            <Link href="https://twitter.com/kishoraditya_" target="_blank" className="text-gray-600 hover:text-white transition-colors">
-                                <Twitter className="h-4 w-4" />
-                            </Link>
-                            <Link href="mailto:kishoradityasc@gmail.com" className="text-gray-600 hover:text-white transition-colors">
-                                <Mail className="h-4 w-4" />
-                            </Link>
+                    <div className="flex flex-col gap-4">
+                        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+                            <p className="text-[10px] text-gray-600 font-medium">
+                                © 2026 GitLog AI. Built with love by{" "}
+                                <Link href="https://www.linkedin.com/in/kishoraditya/" target="_blank" className="hover:text-white transition-colors">Aditya</Link>,{" "}
+                                <Link href="http://antigravity.google/" target="_blank" className="hover:text-white transition-colors">Antigravity</Link>,{" "}
+                                <Link href="https://www.anthropic.com/" target="_blank" className="hover:text-white transition-colors">Claude</Link>, &{" "}
+                                <Link href="https://gemini.google.com/" target="_blank" className="hover:text-white transition-colors">Gemini</Link>.
+                            </p>
+                            <div className="flex items-center gap-6">
+                                <Link href="https://github.com/gitlog" target="_blank" className="text-gray-600 hover:text-white transition-colors">
+                                    <Github className="h-4 w-4" />
+                                </Link>
+                                <Link href="https://www.linkedin.com/in/kishoraditya/" target="_blank" className="text-gray-600 hover:text-white transition-colors">
+                                    <Linkedin className="h-4 w-4" />
+                                </Link>
+                                <Link href="mailto:kishoradityasc@gmail.com" className="text-gray-600 hover:text-white transition-colors">
+                                    <Mail className="h-4 w-4" />
+                                </Link>
+                            </div>
                         </div>
                     </div>
 
