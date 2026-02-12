@@ -43,7 +43,7 @@ export function FloatingTipJar() {
                                     </a>
                                 </Button>
                                 <Button variant="outline" className="flex-1 bg-black/40 border-white/10 text-[10px] h-8 text-gray-400 hover:text-white" asChild>
-                                    <a href="mailto:kishoradityasc@gmail.com">
+                                    <a href="https://razorpay.me/@kishoradityasanjaychaudhari" target="_blank" rel="noopener noreferrer">
                                         Support
                                     </a>
                                 </Button>

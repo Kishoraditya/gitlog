@@ -66,10 +66,12 @@ export function TipJar() {
                 </p>
 
                 <div className="space-y-2">
-                    <Button variant="default" className="w-full bg-white text-black hover:bg-gray-200 text-xs font-bold h-9">
-                        <Coffee className="h-4 w-4 mr-2" />
-                        Drop a Tip
-                    </Button>
+                    <Link href="https://razorpay.me/@kishoradityasanjaychaudhari" target="_blank">
+                        <Button variant="default" className="w-full bg-white text-black hover:bg-gray-200 text-xs font-bold h-9">
+                            <Coffee className="h-4 w-4 mr-2" />
+                            Drop a Tip
+                        </Button>
+                    </Link>
 
                     {/* Product Hunt Upvote - Added per Phase 23 */}
                     <Link href="https://www.producthunt.com/products/gitlog?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-gitlog" target="_blank">

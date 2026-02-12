@@ -6,59 +6,101 @@ import { PostHogProvider } from "posthog-js/react";
 import Script from "next/script";
 import { useSession } from "next-auth/react";
 import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
+import { usePathname, useSearchParams } from "next/navigation";
 
+// Initialize PostHog
 // Initialize PostHog
 if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
     posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY, {
-        api_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://app.posthog.com",
-        capture_pageview: false, // We'll capture manually for SPA
+        api_host: "/ingest", // Use the reverse proxy
+        ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://app.posthog.com", // For the toolbar
+        capture_pageview: false, // We handle this manually for Next.js App Router
+        capture_pageleave: true, // Enable pageleave capture
         persistence: "localStorage",
         autocapture: true,
     });
+}
+
+import { usePathname, useSearchParams } from "next/navigation";
+
+function PostHogPageView() {
+    const pathname = usePathname();
+    const searchParams = useSearchParams();
+
+    // Track pageviews
+    useEffect(() => {
+        if (pathname && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
+            let url = window.origin + pathname;
+            if (searchParams.toString()) {
+                url = url + `?${searchParams.toString()}`;
+            }
+            posthog.capture("$pageview", {
+                $current_url: url,
+            });
+        }
+    }, [pathname, searchParams]);
+
+    // Track scroll depth
+    useEffect(() => {
+        let maxScroll = 0;
+        const updateScroll = () => {
+            const scrollPercent = Math.round(
+                (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100
+            );
+            if (scrollPercent > maxScroll) {
+                maxScroll = scrollPercent;
+            }
+        };
+
+        window.addEventListener("scroll", updateScroll);
+
+        // Send scroll depth on unmount (page leave)
+        return () => {
+            window.removeEventListener("scroll", updateScroll);
+            if (maxScroll > 0) {
+                posthog.capture("scroll_depth", { depth: maxScroll, path: pathname });
+            }
+        };
+    }, [pathname]);
+
+    return null;
 }
 
 export function Analytics({ children }: { children: React.ReactNode }) {
     const { data: session } = useSession();
 
     useEffect(() => {
-        // Check cookie consent before tracking
-        const consent = localStorage.getItem("cookie-consent");
-        if (consent === "all") {
-            if (process.env.NEXT_PUBLIC_POSTHOG_KEY) {
-                posthog.capture("$pageview");
-            }
+        // Identify user across platforms if session exists
+        if (session?.user) {
+            const userId = session.user.id;
 
-            // Identify user across platforms if session exists
-            if (session?.user) {
-                const userId = session.user.id;
+            // PostHog
+            posthog.identify(userId, {
+                email: session.user.email,
+                name: session.user.name,
+            });
 
-                // PostHog
-                posthog.identify(userId, {
-                    email: session.user.email,
-                    name: session.user.name,
-                });
-
-                // Google Analytics
-                if ((window as any).gtag) {
-                    (window as any).gtag("config", process.env.NEXT_PUBLIC_GA_ID, {
-                        user_id: userId,
-                    });
-                }
-
-                // Sentry
-                import("@sentry/nextjs").then(Sentry => {
-                    Sentry.setUser({
-                        id: userId,
-                        email: session.user.email || undefined,
-                        username: session.user.name || undefined,
-                    });
+            // Google Analytics
+            if ((window as any).gtag) {
+                (window as any).gtag("config", process.env.NEXT_PUBLIC_GA_ID, {
+                    user_id: userId,
                 });
             }
+
+            // Sentry
+            import("@sentry/nextjs").then(Sentry => {
+                Sentry.setUser({
+                    id: userId,
+                    email: session.user.email || undefined,
+                    username: session.user.name || undefined,
+                });
+            });
         }
     }, [session]);
 
     return (
         <PostHogProvider client={posthog}>
+            <PostHogPageView />
             {/* Google Analytics 4 */}
             {process.env.NEXT_PUBLIC_GA_ID && (
                 <>
