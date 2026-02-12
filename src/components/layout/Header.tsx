@@ -67,7 +67,7 @@ export function Header() {
                                 </DropdownMenuLabel>
                                 <DropdownMenuSeparator className="bg-white/10" />
                                 <DropdownMenuItem asChild>
-                                    <Link href="/dashboard" className="cursor-pointer flex items-center gap-2 focus:bg-green-500/10 focus:text-green-400">
+                                    <Link href="/repos" className="cursor-pointer flex items-center gap-2 focus:bg-green-500/10 focus:text-green-400">
                                         <LayoutDashboard className="h-4 w-4" />
                                         Dashboard
                                     </Link>
