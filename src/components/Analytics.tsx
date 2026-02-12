@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, Suspense } from "react";
 import posthog from "posthog-js";
 import { PostHogProvider } from "posthog-js/react";
 import Script from "next/script";
@@ -21,7 +21,6 @@ if (typeof window !== "undefined" && process.env.NEXT_PUBLIC_POSTHOG_KEY) {
     });
 }
 
-import { usePathname, useSearchParams } from "next/navigation";
 
 function PostHogPageView() {
     const pathname = usePathname();
@@ -100,7 +99,9 @@ export function Analytics({ children }: { children: React.ReactNode }) {
 
     return (
         <PostHogProvider client={posthog}>
-            <PostHogPageView />
+            <Suspense fallback={null}>
+                <PostHogPageView />
+            </Suspense>
             {/* Google Analytics 4 */}
             {process.env.NEXT_PUBLIC_GA_ID && (
                 <>
