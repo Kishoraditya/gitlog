@@ -135,6 +135,8 @@ function NewsletterForm() {
     return (
         <form onSubmit={handleSubmit} className="flex gap-2">
             <input
+                id="newsletter-email"
+                name="email"
                 type="email"
                 placeholder="email@example.com"
                 value={email}
