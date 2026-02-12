@@ -97,7 +97,7 @@ export default function ComingSoonPage() {
                     </p>
                     <div className="flex justify-center gap-4">
                         <Link
-                            href="https://github.com/gitlog/issues"
+                            href="https://github.com/Kishoraditya/gitlog/issues"
                             className="text-green-400 hover:underline"
                         >
                             Request a Feature →

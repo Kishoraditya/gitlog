@@ -79,7 +79,7 @@ export default function AccessibilityPage() {
                     <h2>Feedback</h2>
                     <p className="text-gray-400">
                         If you encounter any accessibility barriers, please let us know via
-                        <Link href="https://github.com/gitlog/issues" className="text-green-400"> GitHub Issues</Link>.
+                        <Link href="https://github.com/Kishoraditya/gitlog/issues" className="text-green-400"> GitHub Issues</Link>.
                         We welcome your feedback and will work to address any issues.
                     </p>
                 </div>

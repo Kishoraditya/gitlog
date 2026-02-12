@@ -37,7 +37,7 @@ export function FloatingTipJar() {
                             {/* Updated GitHub Link directly in the floating modal */}
                             <div className="mt-4 flex gap-2">
                                 <Button variant="outline" className="flex-1 bg-black/40 border-white/10 text-[10px] h-8 text-gray-400 hover:text-white" asChild>
-                                    <a href="https://github.com/gitlog" target="_blank" rel="noopener noreferrer">
+                                    <a href="https://github.com/Kishoraditya/gitlog" target="_blank" rel="noopener noreferrer">
                                         <Github className="h-3 w-3 mr-2" />
                                         Repository
                                     </a>

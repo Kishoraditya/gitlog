@@ -107,14 +107,28 @@ To use GitLog AI as an MCP server in your local tools (like Claude Desktop), add
 GitLog AI is an open-source first project. We rely on community support to keep the infrastructure running.
 
 - **Drop a Tip**: Support our yearly operational goal ($150) via the integrated **Tip Jar**.
-- **Product Hunt**: Upvote us on [Product Hunt].
+- **Product Hunt**: Upvote us on [Product Hunt](https://www.producthunt.com/products/gitlog?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-gitlog).
+  
+  <a href="https://www.producthunt.com/products/gitlog?embed=true&amp;utm_source=badge-featured&amp;utm_medium=badge&amp;utm_campaign=badge-gitlog" target="_blank" rel="noopener noreferrer"><img alt="Gitlog - AI changelogs from your git history. Free. Private. Local. | Product Hunt" width="250" height="54" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1078197&amp;theme=light&amp;t=1770878056543"></a>
 - **Feedback**: Use the sticky feedback sidebar to report bugs or request features.
+
+---
+
+## 📚 Documentation & Contributing
+
+We want to make contributing to GitLog AI as easy as possible. Check out our guides:
+
+- **[CONTRIBUTING.md](./CONTRIBUTING.md)**: Developer setup, workflow, and code style.
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)**: Deep dive into the tech stack and data flow.
+- **[ROADMAP.md](./ROADMAP.md)**: Future features and known issues.
+- **[ONBOARDING.md](./ONBOARDING.md)**: Quick start guide for new users and devs.
+- **[FEEDBACK.md](./FEEDBACK.md)**: How to report bugs and suggest features.
 
 ---
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` (coming soon) for more information.
+Distributed under the MIT License. See `LICENSE` for more information.
 
 ---
 

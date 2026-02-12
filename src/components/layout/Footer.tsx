@@ -73,7 +73,7 @@ export function Footer() {
                                 <Link href="https://gemini.google.com/" target="_blank" className="hover:text-white transition-colors">Gemini</Link>.
                             </p>
                             <div className="flex items-center gap-6">
-                                <Link href="https://github.com/gitlog" target="_blank" className="text-gray-600 hover:text-white transition-colors">
+                                <Link href="https://github.com/Kishoraditya/gitlog" target="_blank" className="text-gray-600 hover:text-white transition-colors">
                                     <Github className="h-4 w-4" />
                                 </Link>
                                 <Link href="https://www.linkedin.com/in/kishoraditya/" target="_blank" className="text-gray-600 hover:text-white transition-colors">

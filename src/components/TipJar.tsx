@@ -72,7 +72,7 @@ export function TipJar() {
                     </Button>
 
                     {/* Product Hunt Upvote - Added per Phase 23 */}
-                    <Link href="https://www.producthunt.com/posts/gitlog-ai-2" target="_blank">
+                    <Link href="https://www.producthunt.com/products/gitlog?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-gitlog" target="_blank">
                         <Button variant="outline" className="w-full border-white/10 text-white hover:bg-white/5 text-[10px] font-bold h-8 flex items-center justify-center gap-2 mt-2">
                             <span className="text-[#FF6154]">P</span>
                             Upvote on Product Hunt

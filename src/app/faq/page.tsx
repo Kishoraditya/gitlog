@@ -88,7 +88,7 @@ export default function FAQPage() {
                         Still have questions?
                     </p>
                     <Link
-                        href="https://github.com/gitlog/issues"
+                        href="https://github.com/Kishoraditya/gitlog/issues"
                         className="text-green-400 hover:underline"
                     >
                         Ask on GitHub →
