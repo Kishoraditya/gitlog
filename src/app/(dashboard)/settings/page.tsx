@@ -195,6 +195,7 @@ export default function SettingsPage() {
                                         placeholder="# Release {{version}} ({{date}})\n\n{{comment}}\n\n{{commits}}"
                                         className="w-full min-h-[150px] bg-white/5 border border-white/10 rounded-md p-3 text-sm text-gray-200 focus:outline-none focus:ring-1 focus:ring-green-500"
                                         id="custom-format-setting"
+                                        name="customFormat"
                                     />
                                 </div>
                                 <Button

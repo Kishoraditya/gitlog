@@ -60,6 +60,8 @@ export function MailingCenter() {
                 <div className="relative mb-4">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-500" />
                     <Input
+                        id="subscriber-search"
+                        name="search"
                         placeholder="Search subscribers..."
                         className="pl-10 glass border-white/5 focus:border-red-500/50"
                         value={filter}

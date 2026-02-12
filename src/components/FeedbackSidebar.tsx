@@ -101,8 +101,8 @@ export function FeedbackSidebar() {
                                                 type="button"
                                                 onClick={() => setType(t.id as any)}
                                                 className={`flex flex-col items-center justify-center p-3 rounded-xl border transition-all ${type === t.id
-                                                        ? "bg-green-600/20 border-green-500/50 text-white"
-                                                        : "bg-white/5 border-white/5 text-gray-400 hover:bg-white/10"
+                                                    ? "bg-green-600/20 border-green-500/50 text-white"
+                                                    : "bg-white/5 border-white/5 text-gray-400 hover:bg-white/10"
                                                     }`}
                                             >
                                                 <t.icon className={`h-4 w-4 mb-2 ${type === t.id ? "text-green-400" : ""}`} />
@@ -115,6 +115,8 @@ export function FeedbackSidebar() {
                                 <div className="space-y-3">
                                     <p className="text-xs font-bold text-gray-500 uppercase tracking-widest">Message</p>
                                     <textarea
+                                        id="feedback-content"
+                                        name="content"
                                         value={content}
                                         onChange={(e) => setContent(e.target.value)}
                                         placeholder="Tell us what's on your mind..."

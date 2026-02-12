@@ -138,6 +138,7 @@ function NewsletterForm() {
                 id="newsletter-email"
                 name="email"
                 type="email"
+                autoComplete="email"
                 placeholder="email@example.com"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
